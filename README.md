@@ -12,20 +12,7 @@ First, a quick discussion of the parabolic band simplification and what it entai
 
 Here is a nice ascii visualization of the band structure I am describing:
 
-Energy
-^
-    Conduction Band
-    ----------------   X (near)
-     /\    /\
-    /  \  /  \
-   /    \/    \      Indirect
-  /            \     Bandgap
- /              \    1.12 eV
-/                \
--------------------- Γ (center)
-    Valence Band     Heavy Hole Band
-                     Light Hole Band
-                     Split-off Band
+![image](https://github.com/user-attachments/assets/128346d9-aa3b-4090-b19d-a022b419b50a)
 
 This is the band structure of silicon along high-symmetry directions. As you can see the structure follows a sort of M shape. Therefore, the parabolic band simplification is not the worse at low energy levels. But as energy levels increase, i.e more heat is added to the system exciting more electrons to jump the gap from valence to conduction band, the band structure has different minima and fails more and more to be parabolic. This is the main reason why values differ.
 
