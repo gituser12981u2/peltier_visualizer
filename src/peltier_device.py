@@ -18,7 +18,6 @@ class PeltierDevice:
         self.current = current  # Amps
 
         # Material properties for Bi2Te3
-        # TODO: make these inputted values by client code to abstract away from peltier device
         self.density = 7700  # kg/m^3
         self.specific_heat = 544  # J(kg*K)
 
@@ -55,7 +54,6 @@ class PeltierDevice:
         print(f"Delta T: {delta_T} K")
         return delta_T
 
-    # TODO: make T_ambient given by client code
     def initialize_temperature_distribution(self, T_ambient=300):
         """Initialize temperature distribution with calculated temperature difference"""
         delta_T = self.calculate_temperature_difference()

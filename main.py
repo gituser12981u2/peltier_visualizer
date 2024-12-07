@@ -21,7 +21,7 @@ def plot_results(results, transport_props):
     # Carrier density
     ax1.plot(results['temperature'], results['carrier_density'], 'b-')
     ax1.set_xlabel('Temperature (K)')
-    ax1.set_ylabel('Carrier Density (m^-3)')
+    ax1.set_ylabel('Carrier Density (cm^-3)')
     ax1.set_yscale('log')
     ax1.set_title('Carrier Density Evolution')
     ax1.grid(True)
@@ -186,7 +186,8 @@ def main():
         cop = transport_props.calculate_cop(T + 10, T - 10, scattering_rates)
 
         print(f"\nAt T = {T}K:")
-        print(f"  Carrier density: {results['carrier_density'][idx]:.2e} m^-3")
+        print(f"  Carrier density: {
+              results['carrier_density'][idx]:.2e} cm^-3")
         print(f"  Chemical potential: {
               results['chemical_potential'][idx]:.3f} eV")
         print(f"  Phonon population: {

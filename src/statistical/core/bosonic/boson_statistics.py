@@ -7,7 +7,7 @@ from scipy import constants as const
 @dataclass
 class BoseEinsteinConfig:
     """Configuration parameters for Bose-Einstein statistics calculations"""
-    temperature: float  # Temperature n Kelvin
+    temperature: float  # Temperature in Kelvin
     cutoff_energy: float  # Maximum phonon energy in eV
     lattice_constant: float  # Lattice constant in meters
     sound_velocity: float  # Speed of sound in material (m/s)

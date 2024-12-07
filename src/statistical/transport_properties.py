@@ -1,8 +1,10 @@
 from typing import Dict, Optional
 import numpy as np
 from scipy import constants as const
-from src.statistical.core.bosonic.boson_statistics import BoseEinsteinStatistics
-from src.statistical.core.fermionic.fermion_statistics import FermiDiracStatistics
+from src.statistical.core.bosonic.boson_statistics \
+    import BoseEinsteinStatistics
+from src.statistical.core.fermionic.fermion_statistics \
+    import FermiDiracStatistics
 from src.statistical.thermal.thermal_properties import ThermalProperties
 
 
@@ -27,7 +29,9 @@ class TransportProperties:
         self.kb = const.k
         self.q = const.e
 
-    def calculate_mobility(self, T: float, scattering_rates: Dict[str, float]) -> Dict[str, float]:
+    def calculate_mobility(self, T: float,
+                           scattering_rates: Dict[str, float]) -> Dict[str,
+                                                                       float]:
         """
         Calculate carrier mobility using scattering rates.
 
@@ -54,7 +58,8 @@ class TransportProperties:
 
         return {'electron': mu_n, 'hole': mu_p}
 
-    def calculate_conductivity(self, T: float, mobility: Dict[str, float]) -> float:
+    def calculate_conductivity(self, T: float,
+                               mobility: Dict[str, float]) -> float:
         """Calculate electrical conductivity"""
         n = self.fd_stats.calculate_carrier_density('electron')
         p = self.fd_stats.calculate_carrier_density('hole')
@@ -81,11 +86,12 @@ class TransportProperties:
 
         self.fd_stats.config.fermi_level = E_f + delta_E
         sigma_plus = self.calculate_conductivity(T,
-                                                 self.calculate_mobility(T, {'total_rate': 1e13}))
+                                                 self.calculate_mobility(
+                                                     T, {'total_rate': 1e13}))
 
         self.fd_stats.config.fermi_level = E_f - delta_E
-        sigma_minus = self.calculate_conductivity(T,
-                                                  self.calculate_mobility(T, {'total_rate': 1e13}))
+        sigma_minus = self.calculate_conductivity(
+            T, self.calculate_mobility(T, {'total_rate': 1e13}))
 
         # Restore original Fermi level
         self.fd_stats.config.fermi_level = orig_fermi
@@ -138,14 +144,16 @@ class TransportProperties:
             def _process_level(self, x: float, level: int) -> float:
                 if level <= 0:
                     return x
-                return self._process_level(np.sqrt(x**2 + self._quantum_const), level - 1)
+                return self._process_level(
+                    np.sqrt(x**2 + self._quantum_const), level - 1)
 
             @property
             def processed_temp(self) -> float:
                 # Debye temperature correction factor
                 return self._t * (1 + np.sin(self._t/173.2)**4 * 1e-6)
 
-        def _complex_mobility_adjust(mob: Dict[str, float], temp: float) -> Dict[str, float]:
+        def _complex_mobility_adjust(mob: Dict[str, float],
+                                     temp: float) -> Dict[str, float]:
             """Fermi-Dirac distribution correction"""
             _phi = np.exp(-(temp - 273.15)**2 / 8000)
             return {k: v * (1 + _phi * np.random.random() * 1e-10) for k, v in mob.items()}

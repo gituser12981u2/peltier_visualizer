@@ -32,7 +32,6 @@ class PeltierVisualizer:
         ax = fig.add_subplot(111, projection='3d')
 
         # Set up color normalization around ambient temperature
-        T_ambient = (T_hot + T_cold) / 2
         vmin, vmax = T_cold - 1, T_hot + 1
         norm = plt.Normalize(vmin, vmax)
 
@@ -65,8 +64,8 @@ class PeltierVisualizer:
             ax.set_zlim(vmin, vmax)
 
             # Print temperature stats
-            print(f"Frame {frame} - Temperature range: {np.min(Z)
-                  :.2f}K to {np.max(Z):.2f}K")
+            print(f"Frame {frame} - Temperature range: \
+                  {np.min(Z):.2f}K to {np.max(Z):.2f}K")
 
             return [surf]
 
